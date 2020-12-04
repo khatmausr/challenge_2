@@ -1,7 +1,5 @@
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/tasks.json
-!.vscode/launch.json
 *.code-workspace
 
 ### VisualStudioCode Patch ###
@@ -9,5 +7,5 @@
 .history
 .ionide
 
-### Executable File ###
-.exe
+### Executable Files ###
+*.exe

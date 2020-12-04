@@ -39,6 +39,12 @@ Trie* createTrie(ifstream& dic) {
     return root;
 }
 
+void rmSpaces(string& str) {
+    for (int i = 0; i < str.length(); ++i)
+        if (isblank(str[i]))
+            str.erase(i, 1);
+}
+
 void search(vector<string>* v, Trie* root, bool* free, string letters, string str) {
     if (str.length() >= 3 && root->endWord)
         v->push_back(str);
@@ -71,19 +77,18 @@ void wordGenerator(ofstream& fout, Trie* root, string letters) {
 }
 
 int main() {
-    try {
-        ifstream dic("Dic.txt");
-        ifstream fin("input.txt");
-        ofstream fout("output.txt");
-        Trie* root = createTrie(dic);
-        dic.close();
-        string letters = "acep";
-        wordGenerator(fout, root, letters);
+    ifstream dic("Dic.txt");
+    Trie* root = createTrie(dic);
+    dic.close();
 
-        fin.close();
-        fout.close();
-    } catch (char* err) {
-        cout << err << endl;
-    }
+    ifstream fin("input.txt");
+    string letters;
+    getline(fin, letters);
+    rmSpaces(letters);
+    fin.close();
+
+    ofstream fout("output.txt");
+    wordGenerator(fout, root, letters);
+    fout.close();
     return 0;
 }
