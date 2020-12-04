@@ -8,3 +8,6 @@
 # Ignore all local history of files
 .history
 .ionide
+
+### Executable File ###
+.exe
