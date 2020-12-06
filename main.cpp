@@ -31,7 +31,7 @@ Trie* newNode() {
 /// procedure:      put
 /// params:         root    Trie*
 ///                 key     string
-/// INSERT a /key/ (STRING) to TRIE 
+/// INSERT a /key/ (STRING) to TRIE
 void put(Trie* root, string key) {
     // Set an iterator (pointer)
     Trie* curr = root;
@@ -54,7 +54,7 @@ void put(Trie* root, string key) {
 /// create a TRIE from a given dictionary
 /// required format: each line in dictionary contain only 1 word and all characters must be lowercase
 Trie* createTrie(ifstream& dict) {
-    // create an empty TRIE (has only one empty root node) 
+    // create an empty TRIE (has only one empty root node)
     Trie* root = newNode();
     string line;
     // read each line of the dictionary
@@ -84,7 +84,7 @@ void search(vector<string>& ans, Trie* root, bool* free, string letters, string 
             // SET free and str (temporary word)
             free[i] = false;
             str += letters[i];
-            // search in the next node 
+            // search in the next node
             search(ans, root->nextC[letters[i] - 'a'], free, letters, str);
             // Undo the SET action above (to generate permutations)
             free[i] = true;
@@ -105,8 +105,8 @@ void wordGenerator(ofstream& fout, Trie* root, string letters) {
     bool* free = new bool[letters.length()];
     for (int i = 0; i < letters.length(); ++i)
         free[i] = true;
-    
-    // call search 
+
+    // call search
     search(ans, root, free, letters, "");
 
     // print answer
@@ -135,12 +135,12 @@ int main() {
 
     ifstream fin("input.txt");
     ofstream fout("output.txt");
-    string letters;
-
-    while (getline(fin, letters)) {
-        rmSpaces(letters);
-        wordGenerator(fout, root, letters);
-    }
+    
+    string letters, s;
+    while (getline(fin, s))
+        letters += s;
+    rmSpaces(letters);
+    wordGenerator(fout, root, letters);
 
     fin.close();
     fout.close();

@@ -1,2 +1,4 @@
-a c e p
-a m n o e
+a 
+c 
+e 
+p
