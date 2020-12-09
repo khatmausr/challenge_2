@@ -98,7 +98,7 @@ void search(vector<string>& ans, Trie* root, bool* free, string letters, string 
 ///                 root    Trie*
 ///                 letters string
 /// this procedure initiate/delete required resources for procedure search (mainly to generate permutaion)
-void wordGenerator(ostream& os, Trie* root, string letters) {
+void wordGenerator(ofstream& fout, Trie* root, string letters) {
     vector<string> ans;
 
     // create a free array (TRUE - this member can be add to permutation)
@@ -110,9 +110,9 @@ void wordGenerator(ostream& os, Trie* root, string letters) {
     search(ans, root, free, letters, "");
 
     // print answer
-    os << ans.size() << endl;
+    fout << ans.size() << endl;
     for (int i = 0; i < ans.size(); ++i)
-        os << ans[i] << endl;
+        fout << ans[i] << endl;
 
     // delete allocated resources
     delete[] free;
@@ -127,13 +127,6 @@ void rmSpaces(string& str) {
         if (isblank(str[i]))
             str.erase(i, 1);
 }
-string readInput(istream& is){
-    string letters, s;
-    while (getline(is, s))
-        letters += s;
-    rmSpaces(letters);
-    return letters;
-}
 
 int main() {
     ifstream dict("Dic.txt");
@@ -143,8 +136,11 @@ int main() {
     ifstream fin("input.txt");
     ofstream fout("output.txt");
     
-    
-    wordGenerator(fout, root, readInput(fin));
+    string letters, s;
+    while (getline(fin, s))
+        letters += s;
+    rmSpaces(letters);
+    wordGenerator(fout, root, letters);
 
     fin.close();
     fout.close();
