@@ -143,7 +143,7 @@ void wordGenerator(ofstream& fout, Trie* root, string letters) {
 /// this procedure delete all spaces in string! nte
 void rmSpaces(string& str) {
     for (int i = 0; i < str.length(); ++i)
-        if (isblank(str[i]))
+        if (!isalpha(str[i]))
             str.erase(i, 1);
 }
 
